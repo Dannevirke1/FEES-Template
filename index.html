@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FEES Documentation Tool</title>
+<style>
+:root{--blue:#006298;--bright:#00A3E0;--green:#84BD00;--deep:#00635B;--gray:#73808A;--light:#eef3f5;--border:#cbd5da;--text:#17232b}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;color:var(--text);background:#f6f8f9} header{background:var(--blue);color:#fff;padding:20px 24px} header h1{margin:0;font-size:24px} header p{margin:6px 0 0;opacity:.92}.wrap{max-width:1180px;margin:18px auto;padding:0 16px 40px}.notice{background:#fff;border-left:5px solid var(--bright);padding:12px 14px;margin-bottom:14px;border-radius:6px;box-shadow:0 1px 4px #0001}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:#fff;border:1px solid #dbe2e5;border-radius:9px;padding:16px;box-shadow:0 1px 4px #0000000d}.card.full{grid-column:1/-1}h2{font-size:18px;color:var(--blue);margin:0 0 12px}h3{font-size:14px;margin:14px 0 7px;color:var(--deep)}label{font-size:13px}.field{display:grid;grid-template-columns:145px 1fr;gap:8px;align-items:center;margin:7px 0}input[type=text],input[type=number],select,textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:5px;font:inherit;background:#fff}textarea{min-height:72px;resize:vertical}.checks{display:flex;flex-wrap:wrap;gap:7px 13px}.checks label{display:flex;gap:5px;align-items:flex-start}.trial{display:grid;grid-template-columns:1.5fr .55fr .65fr 1fr 1fr;gap:7px;align-items:center;margin:6px 0}.trial.head{font-weight:bold;font-size:12px;color:var(--gray)}.scorebox{background:#f0f7fa;border:1px solid #b9d8e6;border-radius:7px;padding:11px;margin-top:10px}.score{font-size:20px;font-weight:bold;color:var(--blue)}button{border:0;border-radius:6px;padding:10px 14px;font-weight:bold;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#e6eef2;color:#173c50}.danger{background:#fff;color:#8b1d1d;border:1px solid #d6aaaa}.actions{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.output{min-height:280px;white-space:pre-wrap;line-height:1.45;background:#fff}.small{font-size:12px;color:#56656d}.pill{display:inline-block;background:#e8f3f7;border-radius:99px;padding:3px 8px;font-size:12px;margin:2px}.warn{color:#8a4b00;font-weight:bold}.hidden{display:none}@media(max-width:800px){.grid{grid-template-columns:1fr}.card.full{grid-column:auto}.field{grid-template-columns:1fr}.trial{grid-template-columns:1fr 1fr}.trial.head{display:none}}
+@media print{header,.notice,.actions,.no-print{display:none!important}.wrap{max-width:none;margin:0}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><h1>FEES Documentation Tool</h1><p>Point-and-click findings → generated narrative for clinical documentation</p></header>
+<div class="wrap">
+<div class="notice"><b>Local tool:</b> this file runs in your browser and does not transmit entered data. Use only on an approved device/location for protected health information. The generated text reflects your selections; verify it before placing it in the medical record.</div>
+<div class="grid">
+<section class="card"><h2>Encounter / Procedure</h2>
+<div class="field"><label>Indication</label><input id="indication" type="text" placeholder="e.g., concern for aspiration"></div>
+<div class="field"><label>Baseline PO</label><input id="baseline" type="text"></div>
+<div class="field"><label>Position</label><select id="position"><option value="">—</option><option>chair</option><option>bed</option></select></div>
+<div class="field"><label>Arousal</label><select id="arousal"><option value="">—</option><option>alert</option><option>intermittently alert</option><option>lethargic</option></select></div>
+<div class="field"><label>Naris</label><select id="naris"><option value="">—</option><option>right</option><option>left</option></select></div>
+<div class="field"><label>Tolerance</label><select id="tolerance"><option value="">—</option><option>excellent</option><option>good</option><option>fair</option><option>poor</option></select></div>
+<div class="field"><label>Adverse event</label><select id="adverse"><option value="">Not documented</option><option>No adverse events</option><option>Epistaxis</option><option>Vasovagal response</option><option>Excessive discomfort / intolerance</option><option>Other</option></select></div>
+</section>
+<section class="card"><h2>Laryngeal / Secretion Exam</h2>
+<div class="field"><label>Vocal fold mobility</label><select id="vfm"><option value="">—</option><option>bilaterally within functional limits</option><option>reduced on the right</option><option>reduced on the left</option><option>bilaterally reduced</option></select></div>
+<div class="field"><label>Glottic closure</label><select id="glottic"><option value="">—</option><option>complete</option><option>incomplete</option></select></div>
+<div class="field"><label>Cough</label><select id="cough"><option value="">—</option><option>strong</option><option>weak</option><option>absent</option></select></div>
+<div class="field"><label>Secretions</label><select id="secretions"><option value="">—</option><option>effectively managed</option><option>impaired</option></select></div>
+<div class="field"><label>Murray score</label><select id="murray"><option value="">—</option><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+<div class="checks"><label><input type="checkbox" id="secvest">Secretions enter laryngeal vestibule</label><label><input type="checkbox" id="secasp">Silent secretion aspiration</label></div>
+<div class="field"><label>Structural notes</label><input id="structure" type="text" placeholder="Only enter observed abnormalities"></div>
+</section>
+<section class="card full"><h2>Swallow Physiology</h2><div class="checks">
+<label><input type="checkbox" data-phys="adequate bolus containment">Adequate containment</label>
+<label><input type="checkbox" data-phys="premature spillage over the base of tongue">Premature spillage</label>
+<label><input type="checkbox" data-phys="piecemeal deglutition">Piecemeal deglutition</label>
+<label><input type="checkbox" data-phys="delayed swallow initiation">Delayed initiation</label>
+<label><input type="checkbox" data-phys="diffuse pharyngeal clearance inefficiency">Diffuse clearance inefficiency</label>
+<label><input type="checkbox" data-phys="reduced base-of-tongue retraction">Reduced BOT retraction</label>
+<label><input type="checkbox" data-phys="late laryngeal vestibule closure">Late LVC</label>
+<label><input type="checkbox" data-phys="incomplete laryngeal vestibule closure">Incomplete LVC</label>
+<label><input type="checkbox" data-phys="reduced pyriform clearance suggestive of reduced UES opening">Reduced pyriform clearance</label>
+</div><div class="field"><label>Additional physiology</label><input id="physother" type="text"></div></section>
+<section class="card full"><h2>PO Trials</h2><p class="small">Record observed, uncompensated trials. DIGEST-FEES scoring should not use trials after a strategy is cued.</p>
+<div class="trial head"><span>Consistency / presentation</span><span>PAS</span><span>Residue %</span><span>Yale V / P</span><span>Comments</span></div>
+<div id="trials"></div><button class="secondary no-print" onclick="addTrial()">+ Add trial</button>
+</section>
+<section class="card"><h2>DIGEST-FEES</h2><p class="small">Select clinician-assigned Safety and Efficiency grades after applying DIGEST-FEES v2 criteria. Overall grade is calculated from the published interaction matrix.</p>
+<div class="field"><label>Safety grade</label><select id="safety" onchange="digest()"><option value="">—</option><option value="0">0 — normal</option><option value="1">1 — mild</option><option value="2">2 — moderate</option><option value="3">3 — severe</option><option value="4">4 — profound/life-threatening</option></select></div>
+<div class="field"><label>Efficiency grade</label><select id="eff" onchange="digest()"><option value="">—</option><option value="0">0 — normal</option><option value="1">1 — mild</option><option value="2">2 — moderate</option><option value="3">3 — severe</option><option value="4">4 — profound/life-threatening</option></select></div>
+<div class="scorebox">Overall DIGEST-FEES: <span id="overall" class="score">—</span><div id="severity" class="small"></div></div>
+<h3>Quick reference</h3><div class="small">Efficiency uses estimated total pharyngeal residue after the initial/primary swallow: &lt;10%, 10–33%, 34–66%, or &gt;66%, with bolus-type pattern applied per DIGEST-FEES. Yale residue scores are descriptive and are not converted into DIGEST efficiency.</div>
+</section>
+<section class="card"><h2>Clinical Impression / Recommendations</h2>
+<div class="field"><label>Dysphagia type</label><input id="dtype" type="text" placeholder="e.g., oropharyngeal dysphagia"></div>
+<div class="field"><label>Aspiration risk</label><select id="risk"><option value="">—</option><option>low</option><option>mild</option><option>moderate</option><option>high</option></select></div>
+<div class="field"><label>Liquids / IDDSI</label><input id="liquids" type="text"></div><div class="field"><label>Solids / IDDSI</label><input id="solids" type="text"></div>
+<div class="field"><label>Strategies</label><input id="strategies" type="text"></div><div class="field"><label>Medication</label><input id="meds" type="text"></div><div class="field"><label>Feeding assist</label><input id="assist" type="text"></div><div class="field"><label>Oral care</label><input id="oralcare" type="text"></div><div class="field"><label>Therapy / follow-up</label><input id="followup" type="text"></div>
+</section>
+<section class="card full"><h2>Generate Documentation</h2><div class="actions no-print"><button class="primary" onclick="generate()">Generate Narrative</button><button class="secondary" onclick="copyText()">Copy Narrative</button><button class="secondary" onclick="window.print()">Print / Save PDF</button><button class="danger" onclick="resetForm()">Clear Form</button></div><textarea id="output" class="output" placeholder="Generated chart-ready narrative will appear here."></textarea><p id="copymsg" class="small"></p></section>
+</div></div>
+<script>
+let trialN=0; const matrix=[[0,1,2,3,3],[1,1,2,3,3],[1,2,2,3,3],[2,2,3,3,4],[3,3,3,4,4]]; const sev=['normal','mild','moderate','severe','profound/life-threatening'];
+function val(id){return document.getElementById(id).value.trim()} function checked(id){return document.getElementById(id).checked}
+function addTrial(){trialN++;const d=document.createElement('div');d.className='trial';d.innerHTML=`<input type="text" class="tname" placeholder="e.g., thin cup sip"><select class="tpas"><option value="">PAS</option>${[1,2,3,4,5,6,7,8].map(x=>`<option>${x}</option>`).join('')}</select><select class="tres"><option value="">Residue</option><option>&lt;10%</option><option>10–33%</option><option>34–66%</option><option>&gt;66%</option></select><input type="text" class="tyale" placeholder="V / P"><input type="text" class="tcomment" placeholder="observations">`;document.getElementById('trials').appendChild(d)}
+function digest(){const s=val('safety'),e=val('eff');if(s===''||e===''){document.getElementById('overall').textContent='—';document.getElementById('severity').textContent='';return}const g=matrix[+e][+s];document.getElementById('overall').textContent=g;document.getElementById('severity').textContent=sev[g]+' pharyngeal dysphagia severity by DIGEST-FEES';}
+function joinNatural(a){if(a.length<2)return a[0]||'';if(a.length===2)return a.join(' and ');return a.slice(0,-1).join(', ')+', and '+a[a.length-1]}
+function generate(){digest();let p=[];let proc=[];if(val('indication'))proc.push(`FEES was completed for ${val('indication')}`);else proc.push('A Flexible Endoscopic Evaluation of Swallowing (FEES) was completed');if(val('position'))proc.push(`with the patient positioned in ${val('position')}`);if(val('arousal'))proc.push(`level of arousal was ${val('arousal')}`);if(val('naris'))proc.push(`the endoscope was passed transnasally through the ${val('naris')} naris`);if(val('tolerance'))proc.push(`procedure tolerance was ${val('tolerance')}`);if(val('adverse'))proc.push(val('adverse')==='No adverse events'?'no adverse events were documented':`adverse event: ${val('adverse')}`);p.push(proc.join('. ')+'.');
+let l=[];if(val('vfm'))l.push(`true vocal fold mobility was ${val('vfm')}`);if(val('glottic'))l.push(`glottic closure was ${val('glottic')}`);if(val('cough'))l.push(`volitional/reflexive cough was ${val('cough')}`);if(val('secretions'))l.push(`secretion management was ${val('secretions')}`);if(val('murray'))l.push(`Murray Secretion Scale score was ${val('murray')}`);if(checked('secvest'))l.push('secretions entered the laryngeal vestibule');if(checked('secasp'))l.push('silent aspiration of secretions was observed');if(val('structure'))l.push(`additional structural findings: ${val('structure')}`);if(l.length)p.push('Laryngeal/Secretion Examination: '+l.join('; ')+'.');
+let ph=[...document.querySelectorAll('[data-phys]:checked')].map(x=>x.dataset.phys);if(val('physother'))ph.push(val('physother'));if(ph.length)p.push('Swallow Physiology: Findings included '+joinNatural(ph)+'.');
+let rows=[...document.querySelectorAll('.trial')].filter(x=>!x.classList.contains('head'));let ts=[];let maxpas=null;rows.forEach(r=>{let n=r.querySelector('.tname').value.trim(),pas=r.querySelector('.tpas').value,res=r.querySelector('.tres').value,y=r.querySelector('.tyale').value.trim(),c=r.querySelector('.tcomment').value.trim();if(n||pas||res||y||c){let q=n||'trial';if(pas){q+=`: PAS ${pas}`;maxpas=Math.max(maxpas||0,+pas)}if(res)q+=`, DIGEST residue estimate ${res}`;if(y)q+=`, Yale V/P ${y}`;if(c)q+=`, ${c}`;ts.push(q)}});if(ts.length)p.push('PO Trials: '+ts.join('; ')+'.');
+let s=val('safety'),e=val('eff'),o=document.getElementById('overall').textContent;if(s!==''&&e!==''&&o!=='—')p.push(`DIGEST-FEES: Safety grade ${s}, Efficiency grade ${e}, Overall grade ${o} (${sev[+o]}).`);
+let imp=[];if(val('dtype'))imp.push(val('dtype'));if(maxpas!==null)imp.push(`highest documented PAS ${maxpas}`);if(val('risk'))imp.push(`${val('risk')} aspiration risk`);if(imp.length)p.push('Clinical Impression: '+joinNatural(imp)+'.');
+let rec=[];if(val('liquids'))rec.push(`liquids: ${val('liquids')}`);if(val('solids'))rec.push(`solids: ${val('solids')}`);if(val('strategies'))rec.push(`strategies: ${val('strategies')}`);if(val('meds'))rec.push(`medication administration: ${val('meds')}`);if(val('assist'))rec.push(`feeding assistance: ${val('assist')}`);if(val('oralcare'))rec.push(`oral care: ${val('oralcare')}`);if(val('followup'))rec.push(`therapy/follow-up: ${val('followup')}`);if(rec.length)p.push('Recommendations: '+rec.join('; ')+'.');
+document.getElementById('output').value=p.join('\n\n')}
+async function copyText(){const o=document.getElementById('output');if(!o.value)generate();try{await navigator.clipboard.writeText(o.value);document.getElementById('copymsg').textContent='Narrative copied to clipboard.'}catch(e){o.select();document.execCommand('copy');document.getElementById('copymsg').textContent='Narrative copied to clipboard.'}}
+function resetForm(){if(!confirm('Clear all entered findings?'))return;document.querySelectorAll('input').forEach(x=>{if(x.type==='checkbox')x.checked=false;else x.value=''});document.querySelectorAll('select').forEach(x=>x.selectedIndex=0);document.querySelectorAll('textarea').forEach(x=>x.value='');document.getElementById('trials').innerHTML='';trialN=0;for(let i=0;i<6;i++)addTrial();digest()}
+for(let i=0;i<6;i++)addTrial();
+</script>
+</body></html>
